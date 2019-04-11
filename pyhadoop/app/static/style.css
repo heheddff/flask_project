@@ -1,0 +1,21 @@
+a:hover{
+    text-decoration: none;
+}
+
+.layout{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:100;
+    padding-top: 10%;
+    color: #41120f;
+    font-size: 18px;
+    text-align: center;
+    }
+
+.cursor{
+    cursor: pointer;
+}

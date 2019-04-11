@@ -1,0 +1,20 @@
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}
+</script>
+{% extends 'base.html' %}
+<section>
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 border border-primary">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li role="presentation"><a href="#">Profile</a></li>
+                    <li role="presentation"><a href="#">Messages</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10 border border-primary">123</div>
+        </div>
+    </div>
+    {% endblock %}
+</section>

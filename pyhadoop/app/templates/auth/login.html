@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>欢迎使用数据可视化管理系统</h1>
+    <form method="post" class="form-horizontal">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.username.label }}
+
+            {{ form.username(class='form-control')}}
+            {% for message in form.username.errors %}
+                <small class="error">{{ message }}</small>
+            {% endfor %}
+
+        </div>
+        <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(class='form-control') }}
+            {% for message in form.password.errors %}
+                <small class="error">{{ message }}</small>
+            {% endfor %}
+        </div>
+        <div class="form-group form-check">
+            {{ form.remember(class='form-check-input') }}
+            {{ form.remember.label }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class='btn btn-primary') }}
+        </div>
+    </form>
+</div>
+{% endblock %}

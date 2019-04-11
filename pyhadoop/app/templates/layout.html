@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %} - Hadoop</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+
+    <script type=text/javascript src="{{  url_for('static', filename='jquery-1.7.1.min.js') }}"></script>
+    {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script>
+    {% endfor %}
+</head>
+  <body>
+    <!-- Your page contont -->
+    {% from 'bootstrap/nav.html' import render_nav_item %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 border border-primary">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="active">{{ render_nav_item('front.index', '首页') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.bar', '柱状图') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.bar_chart', '柱状图2') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.funnel', '漏斗图') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.gauge', '仪表盘') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.line', '折线图') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.map', '全国地图') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.pin', '饼图') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.rosepin', '玫瑰饼图') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.scatter', '散点图') }}</li>
+                    <li role="presentation">{{ render_nav_item('front.sale', '销量图') }}</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Java <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">jmeter</a></li>
+                            <li><a href="#">EJB</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PHP <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('front.index')}}">Home</a></li>
+                            <li><a href="{{ url_for('front.test')}}">Test</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-md-10 border border-primary">{% block content %}123{% endblock%}</div>
+        </div>
+    </div>
+
+
+
+    {% block scripts %}
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }}
+    {% endblock %}
+  </body>
+</html>

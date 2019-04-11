@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <button id="allSelect" type="button" class="btn btn-primary">全选</button>
+        <button id="reserveSelect" type="button" class="btn btn-primary">取消</button>
+
+        <a class="btn btn-primary" data="1">入库</a>
+        <ul class="list-unstyled">
+            {% for post,v in posts.items() %}
+                {% if v == 1 %}
+                    {% set cs = "text-muted" %}
+                    {% set disabled = "disabled=disabled" %}
+                    {% set res = "已入库" %}
+                    {% set cursor = "" %}
+                {% elif v == 2 %}
+                    {% set cs = "text-success" %}
+                    {% set disabled = "" %}
+                    {% set res = "未入库" %}
+                    {% set cursor = "cursor" %}
+                {% endif %}
+
+                <li id="{{ post }}" class="{{cs}}">
+                    <input type="checkbox" {{ disabled }}>
+                    <span  data=1 class="{{cursor}}">{{res}}</span>
+                    {{ post }}
+                </li>
+            {% endfor %}
+
+        </ul>
+        <div id="zhe" class="hidden">
+            <span>正在入库...</span>
+            <br>
+            <img src="{{  url_for('static', filename='images/eat.gif') }}">
+        </div>
+    </div>
+<script type=text/javascript src="{{  url_for('static', filename='backend.js') }}"></script>
+
+{% endblock %}
