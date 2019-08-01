@@ -1,3 +1,15 @@
 {% extends 'layout.html' %}
-{% block content %}index html
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <a href="{{ url_for('auth.get_file', filename=session.filename) }}" target="_blank">
+    <img src="{{ url_for('auth.get_file', filename=session.filename) }}">
+</a>
 {% endblock %}

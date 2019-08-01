@@ -1,2 +1,9 @@
 *config.py
 *.ipynb
+pyhadoop/bin
+pyhadoop/include
+pyhadoop/lib
+pyhadoop/etc
+pyhadoop/share
+__pycache__
+*.pyc

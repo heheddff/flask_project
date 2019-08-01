@@ -40,13 +40,13 @@ class Read_Hdfs(object):
         start = time.perf_counter()
         try:
             lens = self.client.status(file_path)['length'] # get file contents size
-            lensum = 0 # init deal size
+            lensum = 0  # init deal size
             with self.client.read(file_path,encoding='utf-8') as reader:
                 for line in reader:
                     lensum += len(line)
                     z += 1
-                    if  self.helper.check_len(line) == False:
-                        y +=1
+                    if self.helper.check_len(line) is False:
+                        y += 1
                         continue
 
                     data = json.loads(line)
@@ -85,10 +85,8 @@ class Read_Hdfs(object):
         else:
             return 1
 
-
-
-
-    def remove_time(self, data):
+    @staticmethod
+    def remove_time(data):
         msg = ''
         if 'time' in data:
             data.pop('time')
@@ -97,12 +95,12 @@ class Read_Hdfs(object):
             msg += str(data[k])
         return msg
 
-    def hash(self, msg):
+    @staticmethod
+    def hash(msg):
         m = hashlib.md5()
         secret = msg.encode(encoding='utf-8')
         m.update(secret)
         return m.hexdigest()
-
 
     def insert_mysql_new(self, filename):
         print("{:*^30}".format('Start deal '+filename))
@@ -120,6 +118,7 @@ class Read_Hdfs(object):
             print("***** update {} records,insert {} records,"
                 "other(no update or no insert) {},all records {} *****".format(m, n, y, z))
             print("共用时{:.2f}s".format(time.perf_counter()-start_file))
+            self.mysql.inserts_info(filename)
         except Exception as e:
             print(e, filename)
             return 3
