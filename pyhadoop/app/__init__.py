@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import os
 from flask import Flask
 from app.config import config
@@ -21,10 +22,11 @@ def create_app(config_name=None):
 
 # 注册蓝图
 def register_bp(app):
-    from app.web.bp import web, front, auth
+    from app.web.bp import web, front, auth, redis
     app.register_blueprint(web, url_prefix='/admin')
     app.register_blueprint(front, url_prefix='/front')
     app.register_blueprint(auth)
+    app.register_blueprint(redis, url_prefix='/redis')
 
 
 # 注册插件

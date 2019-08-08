@@ -1,1 +1,1 @@
-from app.web import hadoop, front, auth
+from app.web import hadoop, front, auth, redisclient
